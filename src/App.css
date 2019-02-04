@@ -34,9 +34,13 @@
   height: 50vh;
   width: 100vh;
 
+}
+/* Markers */
+.markerCont{
+  
 } 
 
-
+/* main container */
  .container{
   width: 100%;
   height: auto;
