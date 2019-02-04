@@ -73,22 +73,15 @@ export class MapContainer extends Component {
     }
 }
 
- const LContainer = (props) => (
+ const LoadingContainer = (props) => (
     <div  className="myMapCont" >Hello</div>
   );
 
-/* export default GoogleApiWrapper({
+export default GoogleApiWrapper({
     apiKey: ("AIzaSyAn6EMjdX_667KspKuVZRvYDNEZHNQXKS4"),
     LoadingContainer:LoadingContainer
-})( MapContainer);  */
+})( MapContainer); 
 
 
 
   
-
-export default GoogleApiWrapper(
-    (LContainer) => ({
-      apiKey: ("AIzaSyAn6EMjdX_667KspKuVZRvYDNEZHNQXKS4"),
-      LoadingContainer:LContainer
-    }
-  ))(MapContainer)
