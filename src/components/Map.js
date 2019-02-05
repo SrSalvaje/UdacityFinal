@@ -26,7 +26,7 @@ class Map extends Component {
     //Google´s example
     initMap=()=> {
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
-
+        
         const map = new window.google.maps.Map(document.getElementById("map"), {
             center:{lat: 55.609126, lng: 13.000811},
             zoom:14
@@ -39,12 +39,9 @@ class Map extends Component {
           let infowindow = new window.google.maps.InfoWindow();
 
 
-        this.props.venues.map(venue=>{
-            let i=300;
-            
-            
-            window.setTimeout(function(){
-                let marker = new window.google.maps.Marker({
+        this.props.venues.map(venue=>{ 
+              //for each venue create a marker
+            let marker = new window.google.maps.Marker({
                 map: map,
                 animation:window.google.maps.Animation.DROP,
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
@@ -52,7 +49,7 @@ class Map extends Component {
                 //title: venue.venue.name
               });
               //adds the marker to the state in App.js
-              //(()=>this.props.addMarkerToState(marker))(marker)
+              (()=>this.props.addMarkerToState(marker))(marker)
 
               marker.addListener("click", function () {
                   infowindow.setContent(venue.venue.name)
@@ -73,11 +70,6 @@ class Map extends Component {
                       
               })
 
-
-            }, i=i+300)
-            
-              //for each venue create a marker
-            
              
               
 
