@@ -10,9 +10,14 @@ class App extends Component {
   state={
     markers:[],
     venues:[],
-    filteredVenues:[]
+    filteredVenues:[],
+    search:"", 
+    error:false
   }
   
+  componentDidMount(){
+    this.fetchVenues()
+}
   
   /* Because the Map component needs the data stored in this state, and because 
     that data is fetched async, I pass a callback function to the setStateMethod, 
@@ -20,11 +25,11 @@ class App extends Component {
     and  in turn calls the renderMap (which lives in the Map component)
     once the data has been fetched and this state updated */
 
-   fetchVenues = (callback)=> {
+   fetchVenues = ()=> {
     const parameters={
-      query:"food",
+      query:"food,drinks",
       near:"Malmo,Sweden",
-      limit:"20",
+      limit:"40",
       v:"20190204"
 
     },
@@ -32,7 +37,7 @@ class App extends Component {
     client_secret="O0ZIQFPBW5GTWXJRUG2NFVHYR1HARB4RZCDEFRA0KXH55Y2V";
     
     let baseUrl='https://api.foursquare.com/v2/venues/';
-    let url = baseUrl + `explore?client_id=${client_id}&client_secret=${client_secret}&v=${parameters.v}&near=${parameters.near}}&limit=${parameters.limit}&query=${parameters.query}`;
+    let url = baseUrl + `explore?client_id=${client_id}&client_secret=${client_secret}&v=${parameters.v}&near=${parameters.near}}&limit=${parameters.limit}&section=${parameters.query}`;
     
     fetch(url)
     .then(response=>response.json())
@@ -40,7 +45,7 @@ class App extends Component {
       console.log(data);
       this.setState({
         venues:data.response.groups[0].items
-      },callback()); //this makes sure that the map render method is called once the this state has been updated
+      }); //this makes sure that the map render method is called once the this state has been updated
     })
     .catch(error=>console.log(error))
   }
@@ -51,7 +56,10 @@ class App extends Component {
       <div className="App">
         <h1>My Malmö</h1>
         <main className="container">
-          <Searchbar/>
+           <Searchbar
+           venues={this.state.venues}
+           filteredVenues={this.filteredVenues}
+          />  
           <Map
           fetchVenues={this.fetchVenues}
           venues={this.state.venues}

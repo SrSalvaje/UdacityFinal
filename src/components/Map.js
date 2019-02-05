@@ -8,10 +8,15 @@ class Map extends Component {
    
     
     
-    componentDidMount(){
-        this.props.fetchVenues(this.renderMap)
-    }
+    
 
+    componentDidUpdate(prevProps){
+        if(prevProps.venues!==this.props.venues){
+            this.renderMap()
+        }
+
+    }
+    
     
     renderMap =()=>{
         const APiKey="AIzaSyAn6EMjdX_667KspKuVZRvYDNEZHNQXKS4"

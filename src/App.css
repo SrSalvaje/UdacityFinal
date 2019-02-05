@@ -25,24 +25,15 @@
 
 /* MAp styles */
 #map {
-
  height: 100%;
  width: 100%;
- margin: auto;
-  
+
 }
 
 .mapContainer{
-  display: flex;
-  align-items: center;
   height: 50vh;
-  width: 95%;
-  margin: auto;
+  width: 100vh;
 
-}
-/* Markers */
-.markerCont{
-  
 } 
 
 /* main container */
