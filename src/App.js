@@ -10,7 +10,7 @@ class App extends Component {
   state={
     markers:[]
   }
-
+  
   componentDidMount(){
     //this.fetchVenues()
     //this.axiosVenues()
@@ -30,9 +30,11 @@ class App extends Component {
     fetch(endPoint, {
       headers:{
         Authenthication:"user",
+        'Access-Control-Allow-Origin':'*'
        
       
       },
+      mode:"cors",
       method:"GET"
     }).then(response=>(console.log(response)))
     .catch(error=>console.log(error))
@@ -43,7 +45,7 @@ class App extends Component {
   } */
 
   //this function uses axios and works
-  getFoursquareVenues = () => {
+  axiosVenues = () => {
     const apiEndpoint = "https://api.foursquare.com/v2/venues/explore?"
     const foursquareParameters = {
         client_id: "K4Z0NZV2MFC43ORGTT5ZLIDUQO3DVNUCLHIB33QS5W0KO54K",
