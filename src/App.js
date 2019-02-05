@@ -12,18 +12,19 @@ class App extends Component {
     venues:[],
     filteredVenues:[],
     search:"", 
-    error:false
+    error:false,
+    categories:[
+    {food:"food"}, {drinks:"drinks"}, 
+    {coffee:"coffee"}, {shops:"shops"}, {arts:"arts"}, 
+    {outdoors:"outdoors"}, {sights:"sights"}, {trending:"trending"}, 
+    {topPicks:"topPicks"}
+    ]  
   }
   
   componentDidMount(){
     this.fetchVenues()
 }
   
-  /* Because the Map component needs the data stored in this state, and because 
-    that data is fetched async, I pass a callback function to the setStateMethod, 
-    said function lives in the Map component, fetchVenues is then called by the Mapcomponent
-    and  in turn calls the renderMap (which lives in the Map component)
-    once the data has been fetched and this state updated */
 
    fetchVenues = ()=> {
     const parameters={
@@ -44,7 +45,7 @@ class App extends Component {
     .then(data=> {
       this.setState({
         venues:data.response.groups[0].items
-      }); //this makes sure that the map render method is called once the this state has been updated
+      }); 
     })
     .catch(error=>console.log(error))
   }
