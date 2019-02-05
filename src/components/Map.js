@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 //import Marker from "./Markers"
 import '../App.css';
+//import Marker from './Markers';
 
 
 class Map extends Component {
+   
+    
     
     componentDidMount(){
         this.props.fetchVenues(this.renderMap)
@@ -22,28 +25,60 @@ class Map extends Component {
             center:{lat: 55.609126, lng: 13.000811},
             zoom:14
         });
+        
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
-        let marker = new window.google.maps.Marker({
+         let marker = new window.google.maps.Marker({
             position: {lat: 55.609126, lng: 13.000811},
             map: map,
             title: 'Central Station'
-          });
-         this.props.venues.map(venue=>{
+          }); 
+
+        this.props.venues.map(venue=>{
+            //for each venue create an InfoWindow
+            let infowindow = new window.google.maps.InfoWindow({
+                content: venue.venue.name
+              });
+            
+              //for each venue create a marker
             let marker = new window.google.maps.Marker({
-                position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
                 map: map,
-                title: venue.venue.name
+                animation:window.google.maps.Animation.DROP,
+                position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
+                //title: venue.venue.name
               });
 
-         })
+              marker.addListener("click", function () {
+                  infowindow.open(map, marker)  
+                  
+              });
+
+              //I can probably make this two functions cancel eachothers to save resources
+              marker.addListener("mouseover", function() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                    } else {
+                    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                    }
+                  
+              })
+
+              marker.addListener("mouseout", function() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                }
+  
+              })
+              
+
+         }) 
       }
+
+      
 
   render() {
     return (
     <div class="mapContainer">
-        <div id="map">
-        {/* here is where i should write my loops for rndering all markers */}
-        
+        <div id="map">     
         </div>
     </div>
       
