@@ -49,6 +49,9 @@ class App extends Component {
     })
     .catch(error=>console.log(error))
   }
+  addMarkerToSate=(marker)=>{
+    this.setState({markers:[...this.state.markers,marker]});
+  }
   
   
   render() {
@@ -59,11 +62,13 @@ class App extends Component {
            <Searchbar
            venues={this.state.venues}
            filteredVenues={this.filteredVenues}
+           clickOnListItem={this.clickOnListItem}
           />  
           <Map
           fetchVenues={this.fetchVenues}
           venues={this.state.venues}
           filteredVenues={this.filteredVenues}
+          addMarkerToState={this.addMarkerToSate}
           />
         </main>
       </div>

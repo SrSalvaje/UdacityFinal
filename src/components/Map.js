@@ -32,12 +32,8 @@ class Map extends Component {
         });
         
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
-        //add this marker to the locations array  
-        let marker = new window.google.maps.Marker({
-            position: {lat: 55.609126, lng: 13.000811},
-            map: map,
-            title: 'Central Station'
-          }); 
+        
+        
 
           let infowindow = new window.google.maps.InfoWindow();
 
@@ -53,6 +49,7 @@ class Map extends Component {
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
                 //title: venue.venue.name
               });
+              (()=>this.props.addMarkerToState(marker))(marker)
 
               marker.addListener("click", function () {
                   infowindow.setContent(venue.venue.name)

@@ -16,16 +16,11 @@ class SearchBar extends Component {
         }
     }
 
-    /* renderList(){
-        this.props.venues.map(venue=>{
-
-        })
-
-    } */
+    
 
   render() {
       const {isDataReady}=this.state;
-    
+      const {clickOnListItem}=this.props;
       
      
     return (
@@ -42,7 +37,7 @@ class SearchBar extends Component {
             <ul className="listCont">
             {isDataReady && (
                 this.props.venues.map(venue=>(
-                <li key={venue.venue.id}>
+                <li key={venue.venue.id} onClick={()=>clickOnListItem(venue.venue.id)}>
                     <div className="locationCont">
                         <h3>{venue.venue.name}</h3>
                         <p>{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
