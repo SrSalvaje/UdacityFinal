@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import {Route} from "react-router-dom";
 import Map from "./components/Map";
-//import Marker from "./components/Markers"
+import Searchbar from "./components/Searchbar"
 import './App.css';
 
 
@@ -51,10 +51,12 @@ class App extends Component {
       <div className="App">
         <h1>My Malmö</h1>
         <main className="container">
+          <Searchbar/>
           <Map
           fetchVenues={this.fetchVenues}
           venues={this.state.venues}
-          filteredVenues={this.filteredVenues}/>
+          filteredVenues={this.filteredVenues}
+          />
         </main>
       </div>
       
