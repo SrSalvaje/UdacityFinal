@@ -25,7 +25,8 @@
 /* main container */
 .container{
   display: grid;
-  grid-template-areas: "sideBar" "Map";
+  grid-template-areas: "sideBar Map";
+  grid-template-columns: 30% 70%;
  width: 100%;
  height: auto;
 }
@@ -39,10 +40,16 @@
 }
 
 .mapContainer{
-  height: 50vh;
-  width: 100vh;
+  height: 100vh;
+  width: 100%;
+  grid-area: Map;
 
 } 
 /* SideBar */
+.side-bar{
+  grid-area: sideBar;
+  width: 100%;
+  height:auto;
+}
 
 
