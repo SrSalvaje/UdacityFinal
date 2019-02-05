@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Map from "./components/Map";
 //import Marker from "./components/Markers"
 import './App.css';
-import axios from 'axios'
+
 
 
 class App extends Component {
@@ -14,11 +14,10 @@ class App extends Component {
   }
   
   componentDidMount(){
-    this.fetchVenues()
-    //this.axiosVenues()
+    //this.fetchVenues()
+    
   }
 
-  //this funcytion uses the fetch api and throws a cors error
    fetchVenues = ()=> {
     const parameters={
       query:"food",
@@ -39,19 +38,17 @@ class App extends Component {
     .then(data=> console.log(data))
     .catch(error=>console.log(error))
   }
-
   
- 
-  //this function uses axios and works
-  
-
   
   render() {
     return (
       <div className="App">
         <h1>My Malmö</h1>
         <main className="container">
-          <Map/>
+          <Map
+          fetchVenues={this.fetchVenues}
+          venues={this.state.venues}
+          filteredVenues={this.filteredVenues}/>
         </main>
       </div>
       
