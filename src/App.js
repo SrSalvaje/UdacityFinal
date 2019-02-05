@@ -8,62 +8,42 @@ import axios from 'axios'
 
 class App extends Component {
   state={
-    markers:[]
+    markers:[],
+    venues:[],
+    filteredVenues:[]
   }
   
   componentDidMount(){
-    //this.fetchVenues()
-    this.axiosVenues()
+    this.fetchVenues()
+    //this.axiosVenues()
   }
 
   //this funcytion uses the fetch api and throws a cors error
-   fetchVenues = ()=>{
-    const 
-      client_id="K4Z0NZV2MFC43ORGTT5ZLIDUQO3DVNUCLHIB33QS5W0KO54K",
-      client_secret="O0ZIQFPBW5GTWXJRUG2NFVHYR1HARB4RZCDEFRA0KXH55Y2V",
-      query="food",
-      near="Malmo,Sweden",
-      //limit="10",
-      v="20190204";
-     
-    const endPoint =`https://api.foursquare.com/v2/venues/explore?client_id=${client_id}&client_secret=${client_secret}&query=${query}&near=${near}&v=${v}`;
-    fetch(endPoint, {
+   fetchVenues = ()=> {
+    const parameters={
+      query:"food",
+      near:"Malmo,Sweden",
+      limit:"20",
+      v:"20190204"
+
+    },
+    client_id="K4Z0NZV2MFC43ORGTT5ZLIDUQO3DVNUCLHIB33QS5W0KO54K",
+    client_secret="O0ZIQFPBW5GTWXJRUG2NFVHYR1HARB4RZCDEFRA0KXH55Y2V";
+    
+    let baseUrl='https://api.foursquare.com/v2/venues/';
+    let url = baseUrl + `explore?client_id=${client_id}&client_secret=${client_secret}&v=${parameters.v}&near=${parameters.near}}&limit=${parameters.limit}&query=${parameters.query}`;
       
-      mode:"cors",
-      method:"GET",
-      headers:{
-        // Authenthication:"user",
-         'Access-Control-Allow-Origin':'*'
-       },
-    }).then(response=>(console.log(response)))
+    
+    fetch(url)
+    .then(response=>response.json())
+    .then(data=> console.log(data))
     .catch(error=>console.log(error))
+  }
 
-  } 
-  /* componentDidMount(){
-    this.getFoursquareVenues()
-  } */
-
+  
+ 
   //this function uses axios and works
-  axiosVenues = () => {
-    const apiEndpoint = "https://api.foursquare.com/v2/venues/explore?"
-    const foursquareParameters = {
-        client_id: "K4Z0NZV2MFC43ORGTT5ZLIDUQO3DVNUCLHIB33QS5W0KO54K",
-        client_secret: "O0ZIQFPBW5GTWXJRUG2NFVHYR1HARB4RZCDEFRA0KXH55Y2V",
-        query: "food",
-        near: "Malmo, Sweden",
-        v: 20182507
-    }
-
-    axios.get(apiEndpoint + new URLSearchParams(foursquareParameters))
-        .then(response => {
-            
-            console.log(response)
-        })
-        .catch(error => {
-            alert("Error: Couldn't retrieve data from Foursquare.")
-            console.log(`An error occurred: ${error}`)
-        })
-}
+  
 
   
   render() {
