@@ -13,12 +13,14 @@ class App extends Component {
     filteredVenues:[]
   }
   
-  componentDidMount(){
-    this.fetchVenues()
-    
-  }
+  
+  /* Because the Map component needs the data stored in this state, and because 
+    that data is fetched async, I pass a callback function to the setStateMethod, 
+    said function lives in the Map component, fetchVenues is then called by the Mapcomponent
+    and  in turn calls the renderMap (which lives in the Map component)
+    once the data has been fetched and this state updated */
 
-   fetchVenues = ()=> {
+   fetchVenues = (callback)=> {
     const parameters={
       query:"food",
       near:"Malmo,Sweden",
@@ -31,7 +33,6 @@ class App extends Component {
     
     let baseUrl='https://api.foursquare.com/v2/venues/';
     let url = baseUrl + `explore?client_id=${client_id}&client_secret=${client_secret}&v=${parameters.v}&near=${parameters.near}}&limit=${parameters.limit}&query=${parameters.query}`;
-      
     
     fetch(url)
     .then(response=>response.json())
@@ -39,7 +40,7 @@ class App extends Component {
       console.log(data);
       this.setState({
         venues:data.response.groups[0].items
-      }); 
+      },callback()); //this makes sure that the map render method is called once the this state has been updated
     })
     .catch(error=>console.log(error))
   }

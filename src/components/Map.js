@@ -6,7 +6,7 @@ import '../App.css';
 class Map extends Component {
     
     componentDidMount(){
-        this.renderMap();
+        this.props.fetchVenues(this.renderMap)
     }
 
     
@@ -31,8 +31,8 @@ class Map extends Component {
          this.props.venues.map(venue=>{
             let marker = new window.google.maps.Marker({
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
-                map: map
-                //title: 'Central Station'
+                map: map,
+                title: venue.venue.name
               });
 
          })
