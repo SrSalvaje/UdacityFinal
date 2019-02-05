@@ -66,15 +66,13 @@ class Map extends Component {
                     } else {
                     marker.setAnimation(window.google.maps.Animation.BOUNCE);
                     }
+                    window.setTimeout(function(){
+                        marker.setAnimation(null);
+                      }, 1000);
                   
               })
 
-              marker.addListener("mouseout", function() {
-                if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-                }
-  
-              })
+             
               
 
          }) 

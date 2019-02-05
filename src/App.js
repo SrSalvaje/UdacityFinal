@@ -54,9 +54,13 @@ class App extends Component {
   }
   
   clickOnListItem=(vId)=>{
-    const markerEquivalent=this.state.markers.filter(marker=>vId===marker.id)
-    
-    console.log(markerEquivalent);
+    const markerEquivalent=this.state.markers.filter(marker=>vId===marker.id)[0];
+    //makes the marker bounce
+    markerEquivalent.setAnimation(window.google.maps.Animation.BOUNCE);
+    //for three seconds
+    window.setTimeout(function(){
+      markerEquivalent.setAnimation(null);
+    }, 3000);
 
   }
   
