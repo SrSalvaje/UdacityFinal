@@ -27,17 +27,19 @@ class Map extends Component {
         });
         
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
-         let marker = new window.google.maps.Marker({
+        //add this marker to the locations array  
+        let marker = new window.google.maps.Marker({
             position: {lat: 55.609126, lng: 13.000811},
             map: map,
             title: 'Central Station'
           }); 
 
+          let infowindow = new window.google.maps.InfoWindow();
+
+
         this.props.venues.map(venue=>{
             //for each venue create an InfoWindow
-            let infowindow = new window.google.maps.InfoWindow({
-                content: venue.venue.name
-              });
+            
             
               //for each venue create a marker
             let marker = new window.google.maps.Marker({
@@ -48,6 +50,7 @@ class Map extends Component {
               });
 
               marker.addListener("click", function () {
+                  infowindow.setContent(venue.venue.name)
                   infowindow.open(map, marker)  
                   
               });
