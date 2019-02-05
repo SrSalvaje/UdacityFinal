@@ -14,7 +14,7 @@ class App extends Component {
   }
   
   componentDidMount(){
-    //this.fetchVenues()
+    this.fetchVenues()
     
   }
 
@@ -35,7 +35,12 @@ class App extends Component {
     
     fetch(url)
     .then(response=>response.json())
-    .then(data=> console.log(data))
+    .then(data=> {
+      console.log(data);
+      this.setState({
+        venues:data.response.groups[0].items
+      }); 
+    })
     .catch(error=>console.log(error))
   }
   
