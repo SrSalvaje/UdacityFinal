@@ -31,17 +31,17 @@ class SearchBar extends Component {
     return (
     <div className="side-bar">
         <div className="search-input-wrapper">
-        <input 
-        type="text" 
-        placeholder="Filter venues"
-        /* value={query}
-        onChange= {searchBooks} */
-        />
+            <input 
+            type="text" 
+            placeholder="Filter venues"
+            /* value={query}
+            onChange= {searchBooks} */
+            />
         </div>
-    <div className="search-results">
-        <ul className="listCont">
-           {isDataReady && (
-               this.props.venues.map(venue=>(
+        <div className="search-results">
+            <ul className="listCont">
+            {isDataReady && (
+                this.props.venues.map(venue=>(
                 <li key={venue.venue.id}>
                     <div className="locationCont">
                         <h3>{venue.venue.name}</h3>
@@ -49,11 +49,11 @@ class SearchBar extends Component {
                         <p>{`Adress: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
                     </div>      
                 </li>
-            ))
-           )
-           }
-        </ul>
-    </div>
+                ))
+            )
+            }
+            </ul>
+        </div>
     </div>
       
 

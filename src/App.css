@@ -22,6 +22,14 @@
 .App-link {
   color: #61dafb;
 }
+/* main container */
+.container{
+  display: grid;
+  grid-template-areas: "sideBar" "Map";
+ width: 100%;
+ height: auto;
+}
+
 
 /* MAp styles */
 #map {
@@ -35,9 +43,6 @@
   width: 100vh;
 
 } 
+/* SideBar */
 
-/* main container */
- .container{
-  width: 100%;
-  height: auto;
-}
+
