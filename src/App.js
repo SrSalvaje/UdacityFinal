@@ -42,22 +42,26 @@ class App extends Component {
     fetch(url)
     .then(response=>response.json())
     .then(data=> {
-      console.log(data);
       this.setState({
         venues:data.response.groups[0].items
       }); //this makes sure that the map render method is called once the this state has been updated
     })
     .catch(error=>console.log(error))
   }
+
+  
   addMarkerToSate=(marker)=>{
     this.setState({markers:[...this.state.markers,marker]});
   }
   
   clickOnListItem=(vId)=>{
+    let infowindow = new window.google.maps.InfoWindow();
+
     const markerEquivalent=this.state.markers.filter(marker=>vId===marker.id)[0];
     //makes the marker bounce
     markerEquivalent.setAnimation(window.google.maps.Animation.BOUNCE);
     //for three seconds
+    
     window.setTimeout(function(){
       markerEquivalent.setAnimation(null);
     }, 3000);
