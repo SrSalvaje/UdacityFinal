@@ -13,7 +13,7 @@ class App extends Component {
   
   componentDidMount(){
     //this.fetchVenues()
-    //this.axiosVenues()
+    this.axiosVenues()
   }
 
   //this funcytion uses the fetch api and throws a cors error
@@ -28,14 +28,13 @@ class App extends Component {
      
     const endPoint =`https://api.foursquare.com/v2/venues/explore?client_id=${client_id}&client_secret=${client_secret}&query=${query}&near=${near}&v=${v}`;
     fetch(endPoint, {
-      headers:{
-        Authenthication:"user",
-        'Access-Control-Allow-Origin':'*'
-       
       
-      },
       mode:"cors",
-      method:"GET"
+      method:"GET",
+      headers:{
+        // Authenthication:"user",
+         'Access-Control-Allow-Origin':'*'
+       },
     }).then(response=>(console.log(response)))
     .catch(error=>console.log(error))
 
