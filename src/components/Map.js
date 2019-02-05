@@ -47,8 +47,10 @@ class Map extends Component {
                 map: map,
                 animation:window.google.maps.Animation.DROP,
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
+                "id":venue.venue.id
                 //title: venue.venue.name
               });
+              //adds the marker to the state in App.js
               (()=>this.props.addMarkerToState(marker))(marker)
 
               marker.addListener("click", function () {

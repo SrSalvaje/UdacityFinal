@@ -53,6 +53,12 @@ class App extends Component {
     this.setState({markers:[...this.state.markers,marker]});
   }
   
+  clickOnListItem=(vId)=>{
+    const markerEquivalent=this.state.markers.filter(marker=>vId===marker.id)
+    
+    console.log(markerEquivalent);
+
+  }
   
   render() {
     return (
