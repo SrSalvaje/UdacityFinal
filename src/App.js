@@ -83,7 +83,7 @@ class App extends Component {
  openSide=()=>{
    const sidebar=document.querySelector(".side-bar");
    if(sidebar.style.width==="" || sidebar.style.width==="0px"){
-    sidebar.style.width="250px";
+    sidebar.style.width="30vw";
    }else{
      sidebar.style.width="0";
    }    
