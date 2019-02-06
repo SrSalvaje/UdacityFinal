@@ -10,6 +10,13 @@ class SearchBar extends Component {
         isDataReady:false,
         query:""
     }
+
+    enterPressed(event) {
+        var code = event.keyCode || event.which;
+        if(code === 13) { 
+            document.getElementById("openSidebarMenu").click();
+        } 
+    }
    
     componentDidUpdate(prevProps){
         if(prevProps.venues!==this.props.venues){
@@ -24,15 +31,18 @@ class SearchBar extends Component {
         this.setState({query:val})
     }
 
+    
+
   render() {
       const {isDataReady,query}=this.state;
       const {clickOnListItem}=this.props;
+
       
      
     return (
+    
     <div className="side-bar">
         <div className="search-input-wrapper">
-            
             <select className="searchCont" value={query} 
             onChange={(e)=>this.changeCat(e.target.value)}>
                 
@@ -61,7 +71,7 @@ class SearchBar extends Component {
             </ul>
         </div>
     </div>
-      
+    
 
     );
   }

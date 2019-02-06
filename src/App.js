@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Map from "./components/Map";
 import Searchbar from "./components/Searchbar"
 import './App.css';
+import fouricon from "./img/pbf.png"
+import glg from "./img/google.png"
 
 
 
@@ -78,11 +80,32 @@ class App extends Component {
     }, 5000);
 
   }
-  
+ 
+ openSide=()=>{
+   const sidebar=document.querySelector(".side-bar");
+   if(sidebar.style.width==="" || sidebar.style.width==="0px"){
+    sidebar.style.width="250px";
+   }else{
+     sidebar.style.width="0";
+   }
+    
+} 
   render() {
     return (
       <div className="App">
         <header className="pageHeader"><h1>My Malmö</h1></header>
+        <input
+            type="checkbox"
+            className="openSidebarMenu"
+            id="openSidebarMenu"
+            onClick={this.openSide} 
+        />
+        
+        <label htmlFor="openSidebarMenu" className="sidebarIconToggle" aria-label="menu" role="button"tabIndex="0" >
+            <div className="spinner diagonal part-1" />
+            <div className="spinner horizontal" />
+            <div className="spinner diagonal part-2" />
+        </label>
         <main className="container">
            <Searchbar
            venues={this.state.venues}
@@ -103,7 +126,8 @@ class App extends Component {
           />
         </main>
         <footer class="footer">
-           <img class="fourSq" src="./img/pbf.png" alt="Powered by FourSquare"/>
+           <div className="atributionImg, fsq"><img class="fourSq" src={fouricon} alt="Powered by FourSquare"/></div>
+           <div className="atributionImg, glg"><img class="googleLogo" src={glg} alt="Powered by FourSquare"/></div>
         </footer>
       </div>
       
