@@ -1,12 +1,7 @@
-/* Boiler plate */
+
 .App {
   text-align: center;
   
-}
-
-
-.App-link {
-  color: #61dafb;
 }
 /* nav */
 .pageHeader{
@@ -23,32 +18,7 @@
   color: whitesmoke;
 
 }
-
-#openSideBarMenu {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px; 
-  z-index: 1000;
-}
-
-.sidebarIconToggle {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  cursor: pointer;
-  position: absolute;
-  z-index: 1000;
-  height: 100%;
-  width: 100%;
-  top: 22px;
-  left: 15px;
-  height: 22px;
-  width: 22px;
-}
-.sidebarIconToggle:focus {
-  outline: 3px solid black;
-}
+/*  */
 
 
 /* main container */
@@ -60,37 +30,7 @@
  height: auto;
 }
 
-
-/* MAp styles */
-#map {
- height: 100%;
- width: 100%;
-
-}
-
-.mapContainer{
-  height: 100vh;
-  width: 100%;
-  /* grid-area: "sideBar Map"; */
-
-}
-/* info window */
-.vName, .lName{
-  font-size: 20px;
-  font-weight: 800;
-
-}
-
-.vCat, .lCat{
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.vAdd, .lAdd{
-  font-size: 16px;
-  font-weight: 600;
-}
-
+/* Footer */
 
 .footer{
   display: flex;
@@ -129,76 +69,35 @@
   margin: 0;
 }
 
-/* sidebar stuff */
 
-/* SideBar */
-.searchCont{
-  width:80%;
-  height: 30px;
-  position: sticky;
-}
-.side-bar{
-  width: 0;
-  height:100%;
-  background-color: #2F2FA2;
+/* HAmburger Menu */
+
+#openSideBarMenu {
   position: absolute;
-  z-index: 100;
-  top: 0; 
-  left: 0;
-  /* overflow-x: hidden; /* Disable horizontal scroll */ 
-  overflow: hidden;
-  padding-top: 90px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px; 
+  z-index: 1000;
 }
 
-
-
-
- 
-.search-results{
+.sidebarIconToggle {/* app */
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  overflow: scroll;
+  top: 22px;
+  left: 15px;
+  height: 22px;
+  width: 22px;
+}
+.sidebarIconToggle:focus {
+  outline: 3px solid black;
 }
 
-.listCont{
-  list-style: none;
-  padding: 0%;
-  width: 90%;
-  padding: 10px;
-  margin: auto;
-}
-.listItem{
-  background-color:#aadaff;
-  align-self: center;
-  margin: 0%;
-}
-.listItem :hover{
-  background-color: #f64c71;
-  color:whitesmoke;
-
-}
-.locationCont{
-  align-self: center;
-  
-  
-
-}
-
-
-.list-container {
-  width: 100%;
-  height: 90%;
-  overflow-y: scroll
-}
-
-
-
-input[type=checkbox] {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    display: none;
-}
 
 .spinner {
     transition: all 0.3s;

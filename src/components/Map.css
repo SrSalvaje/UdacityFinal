@@ -1,0 +1,31 @@
+/* Map styles */
+#map {
+    height: 100%;
+    width: 100%;
+   
+   }
+   
+   .mapContainer{
+     height: 100vh;
+     width: 100%;
+     /* grid-area: "sideBar Map"; */
+   
+   }
+   /* info window */
+   .vName, .lName{
+     font-size: 20px;
+     font-weight: 800;
+   
+   }
+   
+   .vCat, .lCat{
+     font-size: 18px;
+     font-weight: 700;
+   }
+   
+   .vAdd, .lAdd{
+     font-size: 16px;
+     font-weight: 600;
+   }
+   
+   

@@ -1,0 +1,65 @@
+
+.searchCont{
+    width:80%;
+    height: 30px;
+    position: sticky;
+  }
+  
+  .side-bar{
+    width: 0;
+    height:100%;
+    background-color: #2F2FA2;
+    position: absolute;
+    z-index: 100;
+    top: 0; 
+    left: 0;
+    /* overflow-x: hidden; /* Disable horizontal scroll */ 
+    overflow: hidden;
+    padding-top: 90px; 
+    transition: 0.5s; 
+  }
+  
+  .search-results{
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+  }
+  
+  .listCont{
+    list-style: none;
+    padding: 0%;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+
+  .listItem{
+    background-color:#aadaff;
+    align-self: center;
+    margin: 0%;
+  }
+
+  .listItem :hover{
+    background-color: #f64c71;
+    color:whitesmoke;
+  
+  }
+
+  .locationCont{
+    align-self: center;
+  }
+  
+  
+  .list-container {
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll
+  }
+  
+  
+  
+  input[type=checkbox] {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      display: none;
+  }
