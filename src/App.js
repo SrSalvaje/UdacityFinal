@@ -87,20 +87,28 @@ class App extends Component {
     sidebar.style.width="250px";
    }else{
      sidebar.style.width="0";
-   }
-    
-} 
+   }    
+  }
+  
+   enterAccessible=(event)=> {
+    let code = event.keyCode || event.which;
+    if(code === 13) {
+        document.getElementById("openSidebarMenu").click();
+    }
+  } 
+  
   render() {
     return (
       <div className="App">
         <header className="pageHeader"><h1>My Malmö</h1></header>
+        {/*Specual thanks to artnerdnet for her awesome hamburger menu https://github.com/artnerdnet*/}
         <input
             type="checkbox"
             className="openSidebarMenu"
             id="openSidebarMenu"
             onClick={this.openSide} 
         />
-        <label htmlFor="openSidebarMenu" className="sidebarIconToggle" aria-label="menu" role="button"tabIndex="0" >
+        <label htmlFor="openSidebarMenu" className="sidebarIconToggle" aria-label="menu" role="button"tabIndex="0" onKeyPress={this.enterAccessible.bind(this)} >
             <div className="spinner diagonal part-1" />
             <div className="spinner horizontal" />
             <div className="spinner diagonal part-2" />
