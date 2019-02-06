@@ -9,9 +9,7 @@ class Map extends Component {
         map:null,
         
     }
-    
-    
-
+    //double purpose, stops the mapo from rerendering when the markers change and renders the new markers based on the user input
     componentDidUpdate(prevProps){
         if(prevProps.venues!==this.props.venues && this.state.map===null){
             this.renderMap()  
@@ -23,7 +21,6 @@ class Map extends Component {
         }
         
     }
-    
     
     renderMap =()=>{
         const APiKey="AIzaSyAn6EMjdX_667KspKuVZRvYDNEZHNQXKS4"
@@ -38,8 +35,6 @@ class Map extends Component {
     //Google´s example
     initMap=()=> {
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
-        
-        
            const map = new window.google.maps.Map(document.getElementById("map"), {
                 center:{lat: 55.609126, lng: 13.000811},
                 zoom:14  
@@ -54,14 +49,14 @@ class Map extends Component {
                 }
     }
         
-        //
+
     renderMarkers=()=>{
         const {map}=this.state
         const infowindow = new window.google.maps.InfoWindow();
         const __tempMarkers__=[];
         //remove markers if  already showing
         
-
+        //populates the info windows
         this.props.venues.forEach(venue=>{
             let infoWindowcontent = `<div class='infoWindow'>
         <p class="vName">${venue.venue.name}</p>
@@ -70,49 +65,44 @@ class Map extends Component {
         </div>`;
         
                 //for each venue create a marker
-            let marker = new window.google.maps.Marker({
-                map: map,
-                animation:window.google.maps.Animation.DROP,
-                position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
-       
-                //sets same Id for the marker as the one for venue
-                "id":venue.venue.id, 
-                //sets same catehory for the marker as the one for venue
-                "category":this.props.search===""? "topPicks" : this.props.search,
-                "venue":venue.venue.name
-                //title: venue.venue.name
-                });
-                __tempMarkers__.push(marker);
-                //add marker to array
-                //__tempMarkers__.push(marker);
-                marker.addListener("click", function () {
-                    infowindow.setContent(infoWindowcontent)
-                    infowindow.open(map, marker)  
-                    
-                });
+        let marker = new window.google.maps.Marker({
+            map: map,
+            animation:window.google.maps.Animation.DROP,
+            position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
+    
+            //sets same Id for the marker as the one for venue
+            "id":venue.venue.id, 
+            //sets same catehory for the marker as the one for venue
+            "category":this.props.search===""? "topPicks" : this.props.search,
+            "venue":venue.venue.name
+            //title: venue.venue.name
+            });
+        __tempMarkers__.push(marker);
+        //add marker to array
+        //__tempMarkers__.push(marker);
+        marker.addListener("click", function () {
+            infowindow.setContent(infoWindowcontent)
+            infowindow.open(map, marker)  
+            
+        });
 
-                marker.addListener("mouseover", function() {
-                if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-                    } else {
-                    marker.setAnimation(window.google.maps.Animation.BOUNCE);
-                    }
-                    window.setTimeout(function(){
-                        marker.setAnimation(null);
-                        }, 1000);
-                        
-                })
+        marker.addListener("mouseover", function() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+            } else {
+            marker.setAnimation(window.google.maps.Animation.BOUNCE);
+            }
+            window.setTimeout(function(){
+                marker.setAnimation(null);
+                }, 1000);
                 
-            }) 
-            //adds the markers to the state in App.js
-            this.props.addMarkerToState(__tempMarkers__);
+        })
+        
+    }) 
+    //adds the markers to the state in App.js
+    this.props.addMarkerToState(__tempMarkers__);
             
     }
-        
-         //
-
-      
-
   render() {
     return (
     <div className="mapContainer">
@@ -120,8 +110,6 @@ class Map extends Component {
         </div>
     </div>
       
-      
-
     );
   }
 }

@@ -28,10 +28,11 @@ class App extends Component {
     this.fetchVenues()
 }
   
+//changes the search term based on user input from nav bar
   changeQuery=(value)=>{
     this.setState({search:value}, this.fetchVenues)
   }
-
+//fecth reuqest for Foursqare
    fetchVenues = ()=> {
     const parameters={
       query:this.state.search ? this.state.search: "topPicks",
@@ -65,6 +66,7 @@ class App extends Component {
   
   addMarkerToSate=(__tempMarkers__)=>{
     ///create a new array by filtering the individual temp markers against the individual state markers and retruning only the ones that dont repeat
+    //I need this to remove the markers when a new category is chosen
     this.setState({markers:[...__tempMarkers__]}); 
     
   }
@@ -79,7 +81,7 @@ class App extends Component {
     }, 5000);
 
   }
- 
+ //open the nav menu
  openSide=()=>{
    const sidebar=document.querySelector(".side-bar");
    if(sidebar.style.width==="" || sidebar.style.width==="0px"){
@@ -88,7 +90,7 @@ class App extends Component {
      sidebar.style.width="0";
    }    
   }
-
+  //allows users to use the enter button to open menu
    enterAccessible=(event)=> {
     let code = event.keyCode || event.which;
     if(code === 13) {
@@ -100,7 +102,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="pageHeader"><h1>My Malmö</h1></header>
-        {/*Specual thanks to artnerdnet for her awesome hamburger menu https://github.com/artnerdnet*/}
+        {/*Special thanks to artnerdnet for her awesome hamburger menu https://github.com/artnerdnet*/}
         <input
             type="checkbox"
             className="openSidebarMenu"
@@ -136,8 +138,6 @@ class App extends Component {
            <div className="atributionImg, glg"><img className="googleLogo" src={glg} alt="Powered by Google"/></div>
         </footer>
       </div>
-      
-
     );
   }
 }
