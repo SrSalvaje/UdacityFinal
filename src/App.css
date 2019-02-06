@@ -5,7 +5,7 @@
 }
 /* nav */
 .pageHeader{
-  height: 80px;
+  height: 10vh;
   align-content: center;
   background-color:#242582;
   z-index: 900;
@@ -36,7 +36,7 @@
   display: flex;
   flex-wrap: nowrap;
   background-color: #e8e8e8;
-  height: 60px;
+  height: 10vh;
   width: 100%;
   z-index: 2000;
   position: absolute;

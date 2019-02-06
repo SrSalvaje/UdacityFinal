@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import {Route} from "react-router-dom";
 import Map from "./components/Map";
 import Searchbar from "./components/Searchbar"
 import './App.css';
@@ -89,7 +88,7 @@ class App extends Component {
      sidebar.style.width="0";
    }    
   }
-  
+
    enterAccessible=(event)=> {
     let code = event.keyCode || event.which;
     if(code === 13) {
@@ -132,17 +131,15 @@ class App extends Component {
           markers={this.state.markers}
           />
         </main>
-        <footer class="footer">
-           <div className="atributionImg, fsq"><img class="fourSq" src={fouricon} alt="Powered by FourSquare"/></div>
-           <div className="atributionImg, glg"><img class="googleLogo" src={glg} alt="Powered by FourSquare"/></div>
+        <footer className="footer">
+           <div className="atributionImg, fsq"><img className="fourSq" src={fouricon} alt="Powered by FourSquare"/></div>
+           <div className="atributionImg, glg"><img className="googleLogo" src={glg} alt="Powered by Google"/></div>
         </footer>
       </div>
-      
       
 
     );
   }
 }
-
 
 export default App;

@@ -44,10 +44,9 @@ class SearchBar extends Component {
         <div className="search-input-wrapper">
             <select className="searchCont" value={query} 
             onChange={(e)=>this.changeCat(e.target.value)}>
-                
                 <option value={query} disabled>{query ? query : "Top Picks"}</option>
                 {this.props.categories.map(cat=>{
-                    return <option value={cat.value}>{cat.value}</option>
+                    return <option key={cat.value} value={cat.value}>{cat.value}</option>
 
                 })}
               
