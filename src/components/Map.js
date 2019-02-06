@@ -19,8 +19,11 @@ class Map extends Component {
             this.renderMap()  
         }
         if(prevProps.venues!==this.props.venues && this.state.map){
+            this.props.markers.map(marker=>marker.setMap(null))
+            
             this.renderMarkers()
         }
+        
     }
     
     
@@ -47,7 +50,11 @@ class Map extends Component {
     renderMarkers=()=>{
         const {map}=this.state
         const infowindow = new window.google.maps.InfoWindow();
-        this.props.venues.map(venue=>{
+        const __tempMarkers__=[];
+        //remove markers if  already showing
+        
+
+        this.props.venues.forEach(venue=>{
             let infoWindowcontent = `<div class='infoWindow'>
         <p class="vName">${venue.venue.name}</p>
         <p class="vCat">${venue.venue.categories[0].name}</p>
@@ -59,12 +66,17 @@ class Map extends Component {
                 map: map,
                 animation:window.google.maps.Animation.DROP,
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
-                "id":venue.venue.id
+       
+                //sets same Id for the marker as the one for venue
+                "id":venue.venue.id, 
+                //sets same catehory for the marker as the one for venue
+                "category":this.props.search===""? "topPicks" : this.props.search,
+                "venue":venue.venue.name
                 //title: venue.venue.name
                 });
-                //adds the marker to the state in App.js
-                (()=>this.props.addMarkerToState(marker))(marker)
-
+                __tempMarkers__.push(marker);
+                //add marker to array
+                //__tempMarkers__.push(marker);
                 marker.addListener("click", function () {
                     infowindow.setContent(infoWindowcontent)
                     infowindow.open(map, marker)  
@@ -82,12 +94,11 @@ class Map extends Component {
                         }, 1000);
                         
                 })
-
                 
-                
-
             }) 
-
+            //adds the markers to the state in App.js
+            this.props.addMarkerToState(__tempMarkers__);
+            
     }
         
          //

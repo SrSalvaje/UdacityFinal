@@ -8,6 +8,7 @@ import './App.css';
 
 class App extends Component {
   state={
+    myTopPicks:null,
     markers:[],
     venues:[],
     filteredVenues:[],
@@ -34,7 +35,7 @@ class App extends Component {
     const parameters={
       query:this.state.search ? this.state.search: "topPicks",
       near:"Malmo,Sweden",
-      limit:"50",
+      limit:"30",
       v:"20190204"
 
     },
@@ -47,14 +48,22 @@ class App extends Component {
     fetch(url)
     .then(response=>response.json())
     .then(data=> {
-      this.setState({
-        venues:data.response.groups[0].items
-      }); 
+      if(!this.state.myTopPicks){
+        this.setState({
+          myTopPicks:data.response.groups[0].items,
+          venues:data.response.groups[0].items
+        }); 
+      }else{
+        this.setState({venues:data.response.groups[0].items})
+      }
+      
     })
-    .catch(error=>console.log(error))
+    .catch(error=>console.log(error))//add error handling
   }
-  addMarkerToSate=(marker)=>{
-    this.setState({markers:[...this.state.markers,marker]});
+  addMarkerToSate=(__tempMarkers__)=>{
+    ///create a new array by filtering the individual temp markers against the individual state markers and retruning only the ones that dont repeat
+    this.setState({markers:[...__tempMarkers__]}); 
+    
   }
   
   clickOnListItem=(vId)=>{
@@ -64,7 +73,7 @@ class App extends Component {
     //for three seconds
     window.setTimeout(function(){
       markerEquivalent.setAnimation(null);
-    }, 3000);
+    }, 5000);
 
   }
   
@@ -80,12 +89,15 @@ class App extends Component {
            categories={this.state.categories}
            changeQuery={this.changeQuery}
            query={this.state.query}
+           markers={this.state.markers}
           />  
           <Map
           fetchVenues={this.fetchVenues}
           venues={this.state.venues}
           filteredVenues={this.filteredVenues}
           addMarkerToState={this.addMarkerToSate}
+          search={this.state.search}
+          markers={this.state.markers}
           />
         </main>
         <footer class="footer">
