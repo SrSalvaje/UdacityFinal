@@ -6,59 +6,72 @@ import '../App.css';
 
 class Map extends Component {
    
-    
+    state={
+        isMapRendered:false,
+        map:null,
+        
+    }
     
     
 
     componentDidUpdate(prevProps){
-        if(prevProps.venues!==this.props.venues){
-            this.renderMap()
+        if(prevProps.venues!==this.props.venues && this.state.map===null){
+            this.renderMap()  
         }
-
+        if(prevProps.venues!==this.props.venues && this.state.map){
+            this.renderMarkers()
+        }
     }
     
     
     renderMap =()=>{
         const APiKey="AIzaSyAn6EMjdX_667KspKuVZRvYDNEZHNQXKS4"
         loadMapScript(`https://maps.googleapis.com/maps/api/js?key=${APiKey}&callback=initMap`);
-        window.initMap=this.initMap;
+        window.initMap=this.initMap; 
+        
     }
     //Google´s example
     initMap=()=> {
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
         
-        const map = new window.google.maps.Map(document.getElementById("map"), {
-            center:{lat: 55.609126, lng: 13.000811},
-            zoom:14
-        });
         
-       
+           const map = new window.google.maps.Map(document.getElementById("map"), {
+                center:{lat: 55.609126, lng: 13.000811},
+                zoom:14  
+            });
+            this.setState({isMapRendered:true, 
+                            map:map}, this.renderMarkers);   
+    }
         
+        //
+    renderMarkers=()=>{
+        const {map}=this.state
+        const infowindow = new window.google.maps.InfoWindow();
+        this.props.venues.map(venue=>{
+            let infoWindowcontent = `<div class='infoWindow'>
+        <p class="vName">${venue.venue.name}</p>
+        <p class="vCat">${venue.venue.categories[0].name}</p>
+        <p class="vAdd">Address: ${venue.venue.location.formattedAddress}</p>
+        </div>`;
         
-
-          let infowindow = new window.google.maps.InfoWindow();
-
-
-        this.props.venues.map(venue=>{ 
-              //for each venue create a marker
+                //for each venue create a marker
             let marker = new window.google.maps.Marker({
                 map: map,
                 animation:window.google.maps.Animation.DROP,
                 position: {lat: venue.venue.location.lat, lng: venue.venue.location.lng},
                 "id":venue.venue.id
                 //title: venue.venue.name
-              });
-              //adds the marker to the state in App.js
-              (()=>this.props.addMarkerToState(marker))(marker)
+                });
+                //adds the marker to the state in App.js
+                (()=>this.props.addMarkerToState(marker))(marker)
 
-              marker.addListener("click", function () {
-                  infowindow.setContent(venue.venue.name)
-                  infowindow.open(map, marker)  
-                  
-              });
+                marker.addListener("click", function () {
+                    infowindow.setContent(infoWindowcontent)
+                    infowindow.open(map, marker)  
+                    
+                });
 
-              //I can probably make this two functions cancel eachothers to save resources
-              marker.addListener("mouseover", function() {
+                marker.addListener("mouseover", function() {
                 if (marker.getAnimation() !== null) {
                     marker.setAnimation(null);
                     } else {
@@ -66,15 +79,18 @@ class Map extends Component {
                     }
                     window.setTimeout(function(){
                         marker.setAnimation(null);
-                      }, 1000);
-                      
-              })
+                        }, 1000);
+                        
+                })
 
-             
-              
+                
+                
 
-         }) 
-      }
+            }) 
+
+    }
+        
+         //
 
       
 

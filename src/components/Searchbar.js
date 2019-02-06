@@ -7,41 +7,52 @@ import '../App.css';
 class SearchBar extends Component {
    
     state={
-        isDataReady:false
+        isDataReady:false,
+        query:""
     }
    
     componentDidUpdate(prevProps){
         if(prevProps.venues!==this.props.venues){
             this.setState({isDataReady:true})
         }
+
+        
     }
 
-    
+    changeCat=(val)=>{
+        this.props.changeQuery(val)
+        this.setState({query:val})
+    }
 
   render() {
-      const {isDataReady}=this.state;
+      const {isDataReady,query}=this.state;
       const {clickOnListItem}=this.props;
       
      
     return (
     <div className="side-bar">
         <div className="search-input-wrapper">
-            <input 
-            type="text" 
-            placeholder="Filter venues"
-            /* value={query}
-            onChange= {searchBooks} */
-            />
+            
+            <select className="searchCont" value={query} 
+            onChange={(e)=>this.changeCat(e.target.value)}>
+                
+                <option value={query} disabled>{query ? query : "Top Picks"}</option>
+                {this.props.categories.map(cat=>{
+                    return <option value={cat.value}>{cat.value}</option>
+
+                })}
+              
+                </select>
         </div>
         <div className="search-results">
             <ul className="listCont">
             {isDataReady && (
                 this.props.venues.map(venue=>(
-                <li key={venue.venue.id} onClick={()=>clickOnListItem(venue.venue.id)}>
+                <li className="listItem" key={venue.venue.id} onClick={()=>clickOnListItem(venue.venue.id)}>
                     <div className="locationCont">
-                        <h3>{venue.venue.name}</h3>
-                        <p>{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
-                        <p>{`Adress: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
+                        <p className="lName">{venue.venue.name}</p>
+                        <p className="lCat">{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
+                        <p className="lAdd">{`Adress: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
                     </div>      
                 </li>
                 ))

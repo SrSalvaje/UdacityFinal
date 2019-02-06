@@ -1,26 +1,24 @@
 /* Boiler plate */
 .App {
   text-align: center;
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App-link {
   color: #61dafb;
+}
+/* nav */
+.pageHeader{
+  height: 80px;
+  align-content: center;
+  background-color:#242582;
+}
+.pageHeader h1{
+  font-size: 50px;
+  margin: 0;
+  color: whitesmoke;
+
 }
 /* main container */
 .container{
@@ -40,16 +38,38 @@
 }
 
 .mapContainer{
-  height: 100vh;
+  height: 100%;
   width: 100%;
   grid-area: Map;
 
-} 
+}
+/* info window */
+.vName, .lName{
+  font-size: 20px;
+  font-weight: 800;
+
+}
+
+.vCat, .lCat{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.vAdd, .lAdd{
+  font-size: 16px;
+  font-weight: 600;
+}
+
 /* SideBar */
+.searchCont{
+  width:80%;
+  height: 30px;
+}
 .side-bar{
   grid-area: sideBar;
   width: 100%;
   height:auto;
+  background-color: #2F2FA2;
 }
 
 .search-results{
@@ -58,3 +78,34 @@
   overflow: scroll;
 }
 
+.listCont{
+  list-style: none;
+  padding: 0%;
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+}
+.listItem{
+  background-color:#aadaff;
+  align-self: center;
+  margin: 0%;
+}
+.listItem :hover{
+  background-color: #f64c71;
+  color:whitesmoke;
+
+}
+.locationCont{
+  align-self: center;
+  
+  
+
+}
+
+.footer{
+  background-color: #e8e8e8;
+  height: 60px;
+  width: 100%;
+  z-index: 1000;
+  
+}

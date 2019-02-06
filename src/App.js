@@ -14,10 +14,11 @@ class App extends Component {
     search:"", 
     error:false,
     categories:[
-    {food:"food"}, {drinks:"drinks"}, 
-    {coffee:"coffee"}, {shops:"shops"}, {arts:"arts"}, 
-    {outdoors:"outdoors"}, {sights:"sights"}, {trending:"trending"}, 
-    {topPicks:"topPicks"}
+      {value:"topPicks"},
+    {value:"food"}, {value:"drinks"}, 
+    {value:"coffee"}, {value:"shops"}, {value:"arts"}, 
+    {value:"outdoors"}, {value:"sights"}, {value:"trending"}
+    
     ]  
   }
   
@@ -25,12 +26,15 @@ class App extends Component {
     this.fetchVenues()
 }
   
+  changeQuery=(value)=>{
+    this.setState({search:value}, this.fetchVenues)
+  }
 
    fetchVenues = ()=> {
     const parameters={
-      query:"food,drinks",
+      query:this.state.search ? this.state.search: "topPicks",
       near:"Malmo,Sweden",
-      limit:"40",
+      limit:"50",
       v:"20190204"
 
     },
@@ -67,12 +71,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>My Malmö</h1>
+        <header className="pageHeader"><h1>My Malmö</h1></header>
         <main className="container">
            <Searchbar
            venues={this.state.venues}
            filteredVenues={this.filteredVenues}
            clickOnListItem={this.clickOnListItem}
+           categories={this.state.categories}
+           changeQuery={this.changeQuery}
+           query={this.state.query}
           />  
           <Map
           fetchVenues={this.fetchVenues}
@@ -81,7 +88,11 @@ class App extends Component {
           addMarkerToState={this.addMarkerToSate}
           />
         </main>
+        <footer class="footer">
+           <img class="fourSq" src="./img/pbf.png" alt="Powered by FourSquare"/>
+        </footer>
       </div>
+      
       
 
     );
