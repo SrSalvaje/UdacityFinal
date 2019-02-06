@@ -100,7 +100,6 @@ class App extends Component {
             id="openSidebarMenu"
             onClick={this.openSide} 
         />
-        
         <label htmlFor="openSidebarMenu" className="sidebarIconToggle" aria-label="menu" role="button"tabIndex="0" >
             <div className="spinner diagonal part-1" />
             <div className="spinner horizontal" />
