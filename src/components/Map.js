@@ -33,6 +33,10 @@ class Map extends Component {
         window.initMap=this.initMap; 
         
     }
+
+    
+        
+    
     //Google´s example
     initMap=()=> {
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
@@ -42,8 +46,14 @@ class Map extends Component {
                 center:{lat: 55.609126, lng: 13.000811},
                 zoom:14  
             });
-            this.setState({isMapRendered:true, 
-                            map:map}, this.renderMarkers);   
+
+            if(!map){
+                this.onMapError();   
+                console.log(map);
+            }else{
+                this.setState({isMapRendered:true, 
+                            map:map}, this.renderMarkers);
+                }
     }
         
         //
@@ -130,6 +140,16 @@ function loadMapScript(url){
     script.src=url;
     script.async=true;
     script.defer=true;
-    index.parentNode.insertBefore(script, index)
+    index.parentNode.insertBefore(script, index);
+    //error function taken based on https://developers.google.com/maps/documentation/javascript/events
+    window.gm_authFailure=(err)=>{
+        const mapWarning = document.querySelector('#map');
+        mapWarning.innerHTML = `<div class='warning-dialog'>
+        <h2 class='warning-title'>Oh The Humanity!!!</h2>
+        <p class='warning-message'>Google Maps is burning! Please check the console or come back later.<p>
+        <p class='warning-message'>If this is a Google Maps error you can still use the navigation bar to find the coolest places in town.</p></div>`;
+    }
 }
+
+
 export default Map;

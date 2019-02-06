@@ -57,9 +57,11 @@ class App extends Component {
         this.setState({venues:data.response.groups[0].items})
       }
       
+    }).catch(function(error){
+      alert( "Oh no, it seems a dingo eat your Foursquare markers! Check back later." );
     })
-    .catch(error=>console.log(error))//add error handling
-  }
+    }
+  
   addMarkerToSate=(__tempMarkers__)=>{
     ///create a new array by filtering the individual temp markers against the individual state markers and retruning only the ones that dont repeat
     this.setState({markers:[...__tempMarkers__]}); 
