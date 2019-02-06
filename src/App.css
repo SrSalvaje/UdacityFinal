@@ -99,23 +99,19 @@
   height: 60px;
   width: 100%;
   z-index: 2000;
-  position: static;
+  position: absolute;
   
   
 }
 .fourSq{
-  width: 100%;
+  max-width: 60%;
   height: auto;
- 
-  margin: auto;
-  margin: 30px 0 0 10px;
- 
- 
+  padding: 20px 0 0;
 }
 .googleLogo{
  width: auto;
   height: 90%;
-  padding: 0 0 0 300px;
+  padding: 5px 0 0 320px;
  
   
 
@@ -149,7 +145,8 @@
   z-index: 100;
   top: 0; 
   left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
+  /* overflow-x: hidden; /* Disable horizontal scroll */ 
+  overflow: hidden;
   padding-top: 90px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
