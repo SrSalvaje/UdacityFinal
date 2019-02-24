@@ -75,4 +75,10 @@
       transform: rotate(-135deg);
       margin-top: -9px;
   }
+    
+ input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
+} 
   

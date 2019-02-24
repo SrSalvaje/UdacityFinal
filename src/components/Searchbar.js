@@ -31,17 +31,16 @@ class SearchBar extends Component {
           
     return (
     <div className="side-bar">
-        <div className="search-input-wrapper">
+        
             <select className="searchCont" value={query} 
-            onChange={(e)=>this.changeCat(e.target.value)}>
-                <option value={query} disabled>{query ? query : "Top Picks"}</option>
+                onChange={(e)=>this.changeCat(e.target.value)}>
+                <option value={query} >{query ? query : "Top Picks"}</option>
                 {this.props.categories.map(cat=>{
                     return <option key={cat.value} value={cat.value}>{cat.value}</option>
 
                 })}
-              
-                </select>
-        </div>
+            </select>
+       
         <div className="search-results">
             <ul className="listCont">
             {isDataReady && (

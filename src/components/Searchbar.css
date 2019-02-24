@@ -43,6 +43,7 @@
   .listItem :hover{
     background-color: #f64c71;
     color:whitesmoke;
+    cursor: pointer;
   
   }
 
@@ -58,9 +59,3 @@
   }
   
   
-  
-  input[type=checkbox] {
-      transition: all 0.3s;
-      box-sizing: border-box;
-      display: none;
-  }
