@@ -18,8 +18,8 @@ class SearchBar extends Component {
     }
 //used to pass the search parameter to the state at App.js
     changeCat=(val)=>{
-        this.props.changeQuery(val)
-        this.setState({query:val})
+        this.props.changeQuery(val.value)
+        this.setState({query:val.text})
     }
 
     
@@ -31,16 +31,15 @@ class SearchBar extends Component {
           
     return (
     <div className="side-bar">
-        
-            <select className="searchCont" value={query} 
-                onChange={(e)=>this.changeCat(e.target.value)}>
-                <option value={query} >{query ? query : "Top Picks"}</option>
-                {this.props.categories.map(cat=>{
-                    return <option key={cat.value} value={cat.value}>{cat.value}</option>
+        <select className="searchCont"  /* value={query} */  onChange={(e)=>this.changeCat(e.target)} >
+            <option value={query} >{query ? query : "Top Picks"}</option>
+            
+             {this.props.categories.map(cat=>{
+                return <option key={cat.value} value={cat.value}>{cat.text}</option>
 
-                })}
-            </select>
-       
+            })} 
+
+        </select>
         <div className="search-results">
             <ul className="listCont">
             {isDataReady && (
@@ -49,7 +48,7 @@ class SearchBar extends Component {
                     <div className="locationCont">
                         <p className="lName">{venue.venue.name}</p>
                         <p className="lCat">{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
-                        <p className="lAdd">{`Adress: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
+                        <p className="lAdd">{`Address: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
                     </div>      
                 </li>
                 ))

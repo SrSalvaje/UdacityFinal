@@ -14,10 +14,10 @@ class App extends Component {
     search:"", 
     error:false,
     categories:[
-      {value:"topPicks"},
-    {value:"food"}, {value:"drinks"}, 
-    {value:"coffee"}, {value:"shops"}, {value:"arts"}, 
-    {value:"outdoors"}, {value:"sights"}, {value:"trending"}],
+      {value:"topPicks", text: "Top Picks"},
+    {value:"food", text: "Food"}, {value:"drinks", text:"Bars"}, 
+    {value:"coffee", text:"Coffee"}, {value:"shops", text:"Shopping"}, {value:"arts", text:"Art"}, 
+    {value:"outdoors", text:"Outdoors"}, {value:"sights", text:"Sights"}, {value:"trending", text:"Trending"}],
     isInfoWindowOpen:false  
   }
   

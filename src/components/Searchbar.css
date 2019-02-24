@@ -1,9 +1,11 @@
 
 .searchCont{
     width:80%;
-    height: 30px;
-    position: sticky;
-    padding: 20px;
+    height: 40px;
+    position: sticky; 
+    font-size: 16px;
+    
+    
   }
 
   .side-bar{
