@@ -17,9 +17,8 @@ class App extends Component {
       {value:"topPicks"},
     {value:"food"}, {value:"drinks"}, 
     {value:"coffee"}, {value:"shops"}, {value:"arts"}, 
-    {value:"outdoors"}, {value:"sights"}, {value:"trending"}
-    
-    ]  
+    {value:"outdoors"}, {value:"sights"}, {value:"trending"}],
+    isInfoWindowOpen:false  
   }
   
   componentDidMount(){
@@ -68,15 +67,46 @@ class App extends Component {
     this.setState({markers:[...__tempMarkers__]});     
   }
   
-  clickOnListItem=(vId)=>{
-    const markerEquivalent=this.state.markers.filter(marker=>vId===marker.id)[0];
+  launchInfoWindow =(venue, marker)=>{
+    let infoWindow;
+    if(this.state.isInfoWindowOpen===false){
+      info();
+      this.setState({isInfoWindowOpen:infoWindow});
+      
+    }else{
+      this.state.isInfoWindowOpen.close();
+      this.setState({isInfoWindowOpen:false})
+      info();
+      this.setState({isInfoWindowOpen:infoWindow});
+    }
+
+    function info(){
+      infoWindow = new window.google.maps.InfoWindow();
+      let infoWindowcontent = `<div class='infoWindow'>
+        <p class="vName">${venue.venue.name}</p>
+        <p class="vCat">${venue.venue.categories[0].name}</p>
+        <p class="vAdd">Address: ${venue.venue.location.formattedAddress}</p>
+        </div>`;
+      infoWindow.setContent(infoWindowcontent);
+      infoWindow.open(window.google.maps.Map, marker);
+      
+    }
+    
+   
+
+  }
+
+  clickOnListItem=(ven)=>{
+    
+    const markerEquivalent=this.state.markers.filter(marker=>ven.venue.id===marker.id)[0];
+    this.launchInfoWindow(ven, markerEquivalent);
     //makes the marker bounce
     markerEquivalent.setAnimation(window.google.maps.Animation.BOUNCE);
-    //for three seconds
+    //for 5 seconds
     window.setTimeout(function(){
       markerEquivalent.setAnimation(null);
     }, 5000);
-
+    
   }
 
   render() {

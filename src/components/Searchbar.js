@@ -46,7 +46,7 @@ class SearchBar extends Component {
             <ul className="listCont">
             {isDataReady && (
                 this.props.venues.map(venue=>(
-                <li className="listItem" key={venue.venue.id} onClick={()=>clickOnListItem(venue.venue.id)}>
+                <li className="listItem" key={venue.venue.id} onClick={(e)=>clickOnListItem(venue)}>
                     <div className="locationCont">
                         <p className="lName">{venue.venue.name}</p>
                         <p className="lCat">{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
