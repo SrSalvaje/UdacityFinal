@@ -27,7 +27,7 @@ class App extends Component {
   
   componentDidMount(){
     this.fetchVenues()
-}
+  }
   
 //changes the search term based on user input from nav bar
   changeQuery=(value)=>{
@@ -60,16 +60,15 @@ class App extends Component {
         this.setState({venues:data.response.groups[0].items})
       }
       
-    }).catch(function(error){
+      }).catch(function(error){
       alert( "Oh no, it seems a dingo eat your Foursquare markers! Check back later." );
-    })
-    }
+      })
+  }
   
   addMarkerToSate=(__tempMarkers__)=>{
     ///create a new array by filtering the individual temp markers against the individual state markers and retruning only the ones that dont repeat
     //I need this to remove the markers when a new category is chosen
-    this.setState({markers:[...__tempMarkers__]}); 
-    
+    this.setState({markers:[...__tempMarkers__]});     
   }
   
   clickOnListItem=(vId)=>{

@@ -12,12 +12,12 @@ class Map extends Component {
     //double purpose, stops the mapo from rerendering when the markers change and renders the new markers based on the user input
     componentDidUpdate(prevProps){
         if(prevProps.venues!==this.props.venues && this.state.map===null){
-            this.renderMap()  
+            this.renderMap();  
         }
         if(prevProps.venues!==this.props.venues && this.state.map){
             this.props.markers.map(marker=>marker.setMap(null))
             
-            this.renderMarkers()
+            this.renderMarkers();
         }
         
     }
