@@ -29,10 +29,7 @@ class Map extends Component {
         
     }
 
-    
-        
-    
-    //Google´s example
+    //Based on Google´s documentation
     initMap=()=> {
         //adapted from https://developers.google.com/maps/documentation/javascript/markers 
            const map = new window.google.maps.Map(document.getElementById("map"), {
@@ -113,11 +110,9 @@ class Map extends Component {
     );
   }
 }
-/*This function is based on the awesome tutorial by Elharony
-https://www.elharony.com
-https://www.youtube.com/watch?v=W5LhLZqj76s 
-I learned more in his 15 min video than on all the tutorials por 
-react scriptloaders or react google map packages
+
+/*This function is based on the awesome tutorial by Elharony @ https://www.elharony.com https://www.youtube.com/watch?v=W5LhLZqj76s 
+I learned more in his 15 min video than on all the tutorials for react scriptloaders or react google map packages
 */
 
 function loadMapScript(url){
@@ -127,14 +122,16 @@ function loadMapScript(url){
     script.async=true;
     script.defer=true;
     index.parentNode.insertBefore(script, index);
-    //error function taken based on https://developers.google.com/maps/documentation/javascript/events
-    window.gm_authFailure=(err)=>{
-        const mapWarning = document.querySelector('#map');
-        mapWarning.innerHTML = `<div class='warning-dialog'>
-        <h2 class='warning-title'>Oh The Humanity!!!</h2>
-        <p class='warning-message'>Google Maps is burning! Please check the console or come back later.<p>
-        <p class='warning-message'>If this is a Google Maps error you can still use the navigation bar to find the coolest places in town.</p></div>`;
-    }
+    
+   
+}
+//error function taken based on https://developers.google.com/maps/documentation/javascript/events
+window.gm_authFailure=(err)=>{
+    const mapWarning = document.querySelector('#map');
+    mapWarning.innerHTML = `<div class='warn-dialog'>
+    <h2 class='warn-t'>Oh The Humanity!!!</h2>
+    <p class='warn-me'>Google Maps is burning! Please check the console or come back later.<p>
+    <p class='warn-me'>If this is a Google Maps error you can still use the navigation bar to find the coolest places in town.</p></div>`;
 }
 
 

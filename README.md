@@ -21,6 +21,6 @@ Note that if you do that, yopu will be running a development version in which th
 
 Depending on your development environment you may or may not have the dependencies required for the static server, pay close attention your console as it will prompt you to run any extra commands needed.
 
-Once you are done, launch the server with `server -s build` and check your console for the port on which the site is being served.
+Once you are done, launch the server with `serve -s build` and check your console for the port on which the site is being served.
 
 ## Contributing

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Map from "./components/Map";
 import Searchbar from "./components/Searchbar"
 import './App.css';
+import HamMenu from "./components/hamMenu"
 import fouricon from "./img/pbf.png"
 import glg from "./img/google.png"
 
@@ -81,39 +82,13 @@ class App extends Component {
     }, 5000);
 
   }
- //open the nav menu
- openSide=()=>{
-   const sidebar=document.querySelector(".side-bar");
-   if(sidebar.style.width==="" || sidebar.style.width==="0px"){
-    sidebar.style.width="30vw";
-   }else{
-     sidebar.style.width="0";
-   }    
-  }
-  //allows users to use the enter button to open menu
-   enterAccessible=(event)=> {
-    let code = event.keyCode || event.which;
-    if(code === 13) {
-        document.getElementById("openSidebarMenu").click();
-    }
-  } 
-  
+
   render() {
     return (
       <div className="App">
         <header className="pageHeader"><h1>My Malmö</h1></header>
         {/*Special thanks to artnerdnet for her awesome hamburger menu https://github.com/artnerdnet*/}
-        <input
-            type="checkbox"
-            className="openSidebarMenu"
-            id="openSidebarMenu"
-            onClick={this.openSide} 
-        />
-        <label htmlFor="openSidebarMenu" className="sidebarIconToggle" aria-label="menu" role="button"tabIndex="0" onKeyPress={this.enterAccessible.bind(this)} >
-            <div className="spinner diagonal part-1" />
-            <div className="spinner horizontal" />
-            <div className="spinner diagonal part-2" />
-        </label>
+        <HamMenu/>
         <main className="container">
            <Searchbar
            venues={this.state.venues}
