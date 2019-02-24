@@ -61,3 +61,24 @@
   }
   
   
+  .skip-link, .skip-linkf {
+    display: block;
+    position: absolute;
+    top: -40px;
+    background: black;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+  }
+  
+  .skip-linkf {
+    left: -1000px;
+  }
+  
+  .skip-linkf:focus {
+    left: 0;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
