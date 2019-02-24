@@ -1,4 +1,5 @@
 import React from 'react';
+import "./hamMenu.css";
 
 const HamMenu = ()=>{
      //open the nav menu

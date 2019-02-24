@@ -3,10 +3,7 @@ import Map from "./components/Map";
 import Searchbar from "./components/Searchbar"
 import './App.css';
 import HamMenu from "./components/hamMenu"
-import fouricon from "./img/pbf.png"
-import glg from "./img/google.png"
-
-
+import Footer from "./components/footer"
 
 class App extends Component {
   state={
@@ -96,21 +93,16 @@ class App extends Component {
            categories={this.state.categories}
            changeQuery={this.changeQuery}
            query={this.state.query}
-           markers={this.state.markers}
-          />  
+           markers={this.state.markers}/>  
           <Map
           fetchVenues={this.fetchVenues}
           venues={this.state.venues}
           filteredVenues={this.filteredVenues}
           addMarkerToState={this.addMarkerToSate}
           search={this.state.search}
-          markers={this.state.markers}
-          />
+          markers={this.state.markers}/>
         </main>
-        <footer className="footer">
-           <div className="atributionImg, fsq"><img className="fourSq" src={fouricon} alt="Powered by FourSquare"/></div>
-           <div className="atributionImg, glg"><img className="googleLogo" src={glg} alt="Powered by Google"/></div>
-        </footer>
+        <Footer/>
       </div>
     );
   }
