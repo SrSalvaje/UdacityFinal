@@ -14,13 +14,15 @@ I was tasked with building a website to display points of interest in my city. T
 
 Any section of code that is not original is accompanied by a comment crediting the source.
 
-## How to return
+## How to
 
 Once you have cloned or downloaded this repo, run `npm install` to install all dependencies, then start the development server with `npm start`.
-Note that if you do that, yopu will be running a development version in which the service worker is not available, if you wish to test the final build then run `npm run build`.
+Note that if you do that, you will be running a development version in which the service worker is not available, if you wish to test the final build then run `npm run build`.
 
-Depending on your development environment you may or may not have the dependencies required for the static server, pay close attention your console as it will prompt you to run any extra commands needed.
+Depending on your development environment you may or may not have the dependencies required for the static server, pay close attention to your console as it will prompt you to run any extra commands needed.
 
 Once you are done, launch the server with `serve -s build` and check your console for the port on which the site is being served.
 
 ## Contributing
+
+Since this is a project meant to represent my skills, I will most likely not accept any contributions, however, suggestions are always welcomed and encouraged. 
