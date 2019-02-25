@@ -5,11 +5,13 @@ const HamMenu = ()=>{
      //open the nav menu
     const openSide=()=>{
         const sidebar=document.querySelector(".side-bar");
-        if(sidebar.style.width==="" || sidebar.style.width==="0px"){
-        sidebar.style.width="30vw";
+        sidebar.classList.toggle("openSide");
+        /* if(sidebar.style.width==="" || sidebar.style.width==="0px"){
+        //sidebar.style.width="30vw";
+       
         }else{
         sidebar.style.width="0";
-        }    
+        }   */  
    }
    //allows users to use the enter button to open menu
     const enterAccessible=(event)=> {

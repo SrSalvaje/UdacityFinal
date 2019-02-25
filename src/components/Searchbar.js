@@ -38,26 +38,22 @@ class SearchBar extends Component {
                 return <option key={cat.value} value={cat.value}>{cat.text}</option>
 
             })} 
-
         </select>   
-            
-        <div className="search-results" >
-            <ul className="listCont">
-            {isDataReady && (
+                <ul className="listCont">
+                {isDataReady && (
                 this.props.venues.map(venue=>(
-                <li className="listItem" key={venue.venue.id} onClick={(e)=>clickOnListItem(venue)}>
+                <li className="listItem" key={venue.venue.id} onClick={(ev)=>clickOnListItem(venue, ev)}>
                     <div className="locationCont"  aria-label="Venue" tabIndex="0">
                         <p className="lName"  aria-label="Name" tabIndex="0">{venue.venue.name}</p>
                         <p className="lCat"  aria-label="Type" tabIndex="0">{venue.venue.categories[0].name ? venue.venue.categories[0].name : "No Category Available"}</p> 
                         <p className="lAdd"  aria-label="Address" tabIndex="0" >{`Address: ${venue.venue.location.address}, ${venue.venue.location.city}`}</p>
-                        <a tabindex="0" href="#searchBar" class="skip-link">Go back to search bar</a>
+                         <a tabIndex="0" href="#searchBar" className="skip-link" >Go back to search bar</a> 
                     </div>      
                 </li>
                 ))
             )
             }
             </ul>
-        </div>
     </div>
     
 

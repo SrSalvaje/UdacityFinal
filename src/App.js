@@ -91,22 +91,27 @@ class App extends Component {
       infoWindow.open(window.google.maps.Map, marker);
       
     }
-    
-   
-
   }
 
-  clickOnListItem=(ven)=>{
-    
-    const markerEquivalent=this.state.markers.filter(marker=>ven.venue.id===marker.id)[0];
-    this.launchInfoWindow(ven, markerEquivalent);
-    //makes the marker bounce
-    markerEquivalent.setAnimation(window.google.maps.Animation.BOUNCE);
-    //for 5 seconds
-    window.setTimeout(function(){
-      markerEquivalent.setAnimation(null);
-    }, 5000);
-    
+
+  clickOnListItem=(ven,ev)=>{
+    let markerEquivalent;
+    //if the event target is not the skip link
+     if(ev.target.classList.value!=="skip-link"){
+      //open the info window for that venue
+      markerEquivalent=this.state.markers.filter(marker=>ven.venue.id===marker.id)[0];
+      this.launchInfoWindow(ven, markerEquivalent);
+      //makes the marker bounce
+      markerEquivalent.setAnimation(window.google.maps.Animation.BOUNCE);
+      //for 5 seconds
+      window.setTimeout(function(){
+        markerEquivalent.setAnimation(null);
+      }, 5000);
+     }else{
+       //if the event target is the skip link
+        ev.preventDefault(); 
+        document.querySelector("#searchBar").focus();
+     }
   }
 
   render() {

@@ -1,3 +1,5 @@
+
+
 .footer{
     display: flex;
     flex-wrap: nowrap;
@@ -6,32 +8,44 @@
     width: 100%;
     z-index: 2000;
     position: absolute;
-    
-    
+   
   }
   .fourSq{
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
-    padding: 20px 0 0;
+   
+    padding: 0 0 0 20px; 
+    
   }
   .googleLogo{
-   width: auto;
-    height: 90%;
-    padding: 5px 0 0 320px;
-   
-    
-  
+   max-width: 50px;
+    height: auto;
+    padding: 0 20px 0 0; 
   }
+  
   .fsq, .glg{
-    width: 100%;
+    display: flex;
+    width: 50%;
     height: auto;
-    
   }
   
-  .atributionImg{
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
+  .fsq{
+    align-items: center;
+    justify-content: center;
   }
+
+  .glg{
+    align-items: center;
+    justify-content: flex-end;
+
+  }
+
+  @media screen and (min-width: 1000px) {
+
+    .fsq{
+      justify-content: flex-start;
+    }
+  
+  }
+  
   
