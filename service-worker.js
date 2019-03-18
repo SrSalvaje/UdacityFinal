@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/SrSalvaje/UdacityFinal/precache-manifest.37b344d302e0ffc73832731c03d39561.js"
+  "/UdacityFinal/precache-manifest.835741b835d13a1b4079ff01a2045379.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/SrSalvaje/UdacityFinal/index.html", {
+workbox.routing.registerNavigationRoute("/UdacityFinal/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
